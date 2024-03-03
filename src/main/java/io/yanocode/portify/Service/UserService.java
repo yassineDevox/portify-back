@@ -30,6 +30,12 @@ public class UserService {
                 ()-> new RuntimeException("User not Found")
         );
     }
+    public User createUser(User user){
+        return userRepo.save(user);
+    }
+    public void deleteUser(User user){
+        userRepo.delete(user);
+    }
     public String uploadPhoto(String id, MultipartFile file){
         User user = getUser(id);
         String avatarUrl = avatarFunction.apply(id,file);
