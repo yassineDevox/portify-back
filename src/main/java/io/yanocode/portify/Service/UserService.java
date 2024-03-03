@@ -1,5 +1,6 @@
 package io.yanocode.portify.Service;
 
+import io.yanocode.portify.Constant.Constant;
 import io.yanocode.portify.Domain.User;
 import io.yanocode.portify.Repo.UserRepository;
 import jakarta.transaction.Transactional;
@@ -15,6 +16,8 @@ import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.Function;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @Service
 @Transactional(rollbackOn = Exception.class)
@@ -46,12 +49,12 @@ public class UserService {
     private final BiFunction<String, MultipartFile, String> avatarFunction = (id,image)->{
         String filename = id + fileExtension.apply(image.getOriginalFilename());
         try {
-            Path fileStorageLocation = Paths.get("")
+            Path fileStorageLocation = Paths.get(Constant.PHOTOS_DIRECTORY)
                     .toAbsolutePath().normalize();
             if(!Files.exists(fileStorageLocation)){
                 Files.createDirectories(fileStorageLocation);
             }
-            Files.copy(image.getInputStream(),fileStorageLocation.resolve(filename));
+            Files.copy(image.getInputStream(),fileStorageLocation.resolve(filename),REPLACE_EXISTING);
             return ServletUriComponentsBuilder
                     .fromCurrentContextPath()
                     .path("/users/pics/" + filename)
