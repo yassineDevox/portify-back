@@ -22,6 +22,6 @@ public class Portfolio {
     @Column(unique = true, updatable = false)
     private String id;
     private String profile;
-    @Column(columnDefinition = "TEXT")
+    @Column(columnDefinition = "text")
     private String bio;
 }
