@@ -1,8 +1,9 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/portifyDB
-    username:
-    password:
+    url: jdbc:postgresql://ec2-52-215-68-14.eu-west-1.compute.amazonaws.com:5432/d29u1jhenn5ut4
+    username: jhorfqstjcrdqq
+    password: 14556caf31ad1c8a4cb83d3fff453cac0716b79fa5567bec3bf74a720e91d043
+
   jpa:
     database-platform: org.hibernate.dialect.PosgreSQLInnoDBDialect
     generate-ddl: true
